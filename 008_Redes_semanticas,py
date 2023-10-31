@@ -1,0 +1,29 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Crear un grafo para representar la red semántica
+G = nx.DiGraph()
+
+# Agregar nodos (conceptos) a la red semántica
+G.add_node("Animal")
+G.add_node("Mamífero")
+G.add_node("Ave")
+G.add_node("Gato")
+G.add_node("Perro")
+G.add_node("Loro")
+
+# Agregar relaciones (aristas) entre nodos
+G.add_edge("Gato", "Mamífero")
+G.add_edge("Perro", "Mamífero")
+G.add_edge("Loro", "Ave")
+
+# Visualizar la red semántica
+pos = nx.spring_layout(G, seed=42)
+labels = {node: node for node in G.nodes()}
+nx.draw(G, pos, with_labels=True, node_size=1000, node_color="skyblue", font_size=10, font_color="black", labels=labels)
+plt.title("Red Semántica")
+plt.show()
+
+# Consultas en la red semántica
+print("Vecinos de 'Mamífero':", list(G.neighbors("Mamífero")))
+print("Vecinos de 'Ave':", list(G.neighbors("Ave")))
